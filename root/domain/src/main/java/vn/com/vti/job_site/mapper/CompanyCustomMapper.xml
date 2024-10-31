@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="vn.com.vti.job_site.mapper.CompanyCustomMapper">
+  <resultMap id="CustomResultMap" type="vn.com.vti.job_site.entity.CompanyCustom">
+  	<id column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="business_type_id" jdbcType="INTEGER" property="businessTypeId" />
+  <result column="business_type_name" jdbcType="VARCHAR" property="businessTypeName" />
+  </resultMap>
+  <select id="selectAll" resultMap="CustomResultMap">
+  	SELECT 
+  		c.*
+  		, bt.business_type_name
+	FROM 
+		company AS c
+		LEFT JOIN business_type AS bt 
+		ON c.business_type_id = bt.business_type_id
+  </select>
+</mapper>
